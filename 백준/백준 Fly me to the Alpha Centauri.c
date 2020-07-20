@@ -2,16 +2,15 @@
 
 int main(void)
 {
-	long long x, y, distance, boundary, t, i, j, k;
+	long long x, y, distance, boundary, t, i, j;
 
 	scanf("%lld", &t);
 	for (i = 0; i < t; i++) {
 		scanf("%lld %lld", &x, &y);
 		distance = y - x;
 		boundary = 0;
-		for (j = 1; boundary < distance; j++) {
+		for (j = 1; boundary < distance; j++)
 			boundary += j * 2;
-		}
 		if (distance <= boundary - j + 1) {
 			printf("%lld\n", 2 * (j - 1) - 1);
 			continue;
@@ -21,6 +20,5 @@ int main(void)
 			continue;
 		}
 	}
-
 	return 0;
 }
