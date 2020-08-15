@@ -1,2 +1,5 @@
-필수 실습 문제 소스코드들을 저장하는 파일
+필수 실습 문제
 EPP = Essential Practical Problems
+
+필수 실습 예제
+EPE = Essential Practical Examples
