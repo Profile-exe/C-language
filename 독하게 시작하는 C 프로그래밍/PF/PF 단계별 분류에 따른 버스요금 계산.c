@@ -2,14 +2,16 @@
 
 int main(void)
 {
-	int age;
-	double fee = 1000;
+	int fee = 1000, age = 0;
+	double rate = 0.0;
 
 	scanf_s("%d", &age);
-	if (age >= 65 || age <= 3) printf("최종요금 : %.0f원", fee * 0);
-	else if (age >= 20) printf("최종요금 : %.0f원", fee);
-	else if (age >= 14) printf("최종요금 : %.0f원", fee * 0.75);
-	else if (age >= 4) printf("최종요금 : %.0f원", fee * 0.5);
+	if (age >= 65)		rate = 0.0;
+	else if (age >= 20) rate = 1.0;
+	else if (age >= 14) rate = 0.75;
+	else if (age >= 4)	rate = 0.5;
+	else				rate = 0.0;
 
+	printf("최종요금 : %d원\n", (int)(fee * rate));
 	return 0;
 }
