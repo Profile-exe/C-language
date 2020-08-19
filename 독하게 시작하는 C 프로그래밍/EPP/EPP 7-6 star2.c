@@ -1,15 +1,15 @@
 #include <stdio.h>
 
-int  main(void)
+int main(void)
 {
 	int i, j;
 
 	for (i = 0; i < 5; i++) {
-		for (j = 4; j > i; j--)
-			printf("  ");
-		for (j = 0; j < i + 1; j++)
-			printf("* ");
-		printf("\n");
+		for (j = 0; j < 5; j++) {
+			if (i + j >= 4) printf("*\t");
+			else			putchar('\t');
+		}
+		putchar('\n');
 	}
 	return 0;
 }
