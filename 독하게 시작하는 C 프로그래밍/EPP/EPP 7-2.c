@@ -7,8 +7,7 @@ int main(void)
 	while (i <= 4) {
 		j = 0;
 		while (j <= 4) {
-			putchar('*');
-			putchar('\t');
+			printf("*\t");
 			++j;
 		}
 		putchar('\n');
