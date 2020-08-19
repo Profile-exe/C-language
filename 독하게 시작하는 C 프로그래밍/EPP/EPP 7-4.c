@@ -8,8 +8,7 @@ int  main(void)
 	if (n < 2 || n > 9) printf("ERROR");
 	else {
 		while (i <= 9) {
-			printf("%d * %d = %d\n", n, i, n * i);
-			++i;
+			printf("%d * %d = %d\n", n, i, n * i++);
 		}
 	}
 }
