@@ -5,9 +5,9 @@ int main(void)
 	int aList[5] = { 30, 40, 10, 50, 20 };
 	int i = 0;
 
-	for (i = 0; i < 4; i++)
-		if (aList[i] < aList[i + 1])
-			aList[0] = aList[i + 1];
+	for (i = 1; i < 5; i++)
+		if (aList[i] > aList[0])
+			aList[0] = aList[i];
 
 	for (i = 0; i < 5; i++)
 		printf("%d\t", aList[i]);
