@@ -2,24 +2,26 @@
 
 int main(void)
 {
-	int arr[5][5] = { 0, };
-	int i, j, count = 0;
+	int aList[5][5] = { 0, };
+	int i = 0, j = 0, nCounter = 0, nOffset = 1;
 
 	for (i = 0; i < 5; i++) {
-		if (i % 2 == 0) {
-			for (j = 0; j < 5; j++)
-				arr[i][j] = ++count;
+		if (i % 2 == 0) nCounter = i * 5;
+		else			nCounter = (i + 1) * 5 + 1;
+
+		for (j = 0; j < 5; j++) {
+			nCounter += nOffset;
+			aList[i][j] = nCounter;
 		}
-		else {
-			for (j = 4; j >= 0; j--)	//for (j = 0; j < 5; j++)
-				arr[i][j] = ++count;	//    arr[i][4-j] = ++count;
-		}
+
+		nOffset = -nOffset;
 	}
+
 	for (i = 0; i < 5; i++) {
-		for (j = 0; j < 5; j++)
-			printf("%d\t", arr[i][j]);
+		for (j = 0; j < 5; j++) {
+			printf("%d\t", aList[i][j]);
+		}
 		putchar('\n');
 	}
-
 	return 0;
 }
