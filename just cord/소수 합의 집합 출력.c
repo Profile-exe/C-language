@@ -4,8 +4,6 @@
 bool prime[100];
 
 int checkPrime(int n) {
-	if (!(prime[n])) return 1;
-	else return 0;
 }
 
 int main(void)
