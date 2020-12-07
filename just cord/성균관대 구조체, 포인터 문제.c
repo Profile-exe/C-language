@@ -2,36 +2,35 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 struct vector {
     int dim;
     double* data;
 };
 
 struct vector* __new__(const int dim, const double* data) {
-    static struct vector r_vector[100] = { 0, };
-    static double temp[100][100] = { 0, };
-    static int i = 0;
-    for (int j = 0; j < dim; j++)
-        temp[i][j] = data[j];
-    r_vector[i].dim = dim;
-    r_vector[i].data = temp[i];
-    return &r_vector[i++];
-}
+    struct vector* temp = (struct vector*)calloc(1, sizeof(struct vector)); // calloc은 메모리 할당과 동시에 초기화 [malloc + memset]
+
+    temp->dim = dim;
+    temp->data = calloc(dim, sizeof(double));   // 포인터는 NULL로 초기화되므로 calloc으로 data에 대해 할당
+
+    for (int i = 0; i < dim; i++)
+        temp->data[i] = data[i];
+    return temp;
+};
 
 void __del__(struct vector* v) {
     v = NULL;
 }
 
 struct vector* add(struct vector* x, struct vector* y) {
-    static int i = 0;
-    static struct vector s_vector[100] = { 0, };
-    static double temp[100][100] = { 0, };
-    for (int j = 0; j < x->dim; j++)    // 차원이 같은 벡터끼리 더하므로 x, y 어느것의 dim이든 상관 X
-        temp[i][j] = x->data[j] + y->data[j];
-    s_vector[i].dim = x->dim;           // 위와 마찬가지
-    s_vector[i].data = temp[i];
-    return &s_vector[i++];
+    struct vector* temp = (struct vector*)calloc(1, sizeof(struct vector));
+
+    temp->dim = x->dim; // 같은 차원의 벡터를 더하므로 아무거나 상관 없음
+    temp->data = calloc(temp->dim, sizeof(double));
+
+    for (int i = 0; i < temp->dim; i++)
+        temp->data[i] = x->data[i] + y->data[i];
+    return temp;
 }
 
 struct vector* s_mult(double s, struct vector* v) {
@@ -61,7 +60,6 @@ int main() {
         struct vector* added = add(v_1, v_2);
         print(added);
         __del__(added);
-
     }
     __del__(v_1);
     __del__(v_2);
