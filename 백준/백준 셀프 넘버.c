@@ -1,33 +1,18 @@
 #include <stdio.h>
+#include <math.h>
 
-int list[10001] = { 0 };
-
-void noself_n()
-{
-	int a, div, noself;
-	for (int i = 1; i <= 10000; i++) {
-		div = noself = i, a = 0;
-		do {
-			a = div % 10;
-			noself += a;
-			div /= 10;
-		} while (div != 0 || a != 0);
-		list[noself]++;
-	}
-}
-
-void self_n()
-{
-	for (int i = 1; i <= 10000; i++) {
-		if (list[i] == 0) {
-			printf("%d\n", i);
-		}
-	}
-}
+int v[10036] = { 0, }; // 9999가 생성하는 값이 최대 값 == 10035
 
 int main(void)
 {
-	noself_n();
-	self_n();
+	int max = 0;
+	for (int i = 1; i <= 10035; i++) {	
+		int tmp = i;
+		for (int j = 0; j <= 4; j++)
+			tmp += i % (int)pow(10, j + 1) / (int)pow(10, j);
+		v[tmp] = 1;
+	}
+	for (int i = 1; i <= 10000; i++)	// 10000이하의 셀프넘버
+		if (!v[i]) printf("%d\n", i);
 	return 0;
 }
