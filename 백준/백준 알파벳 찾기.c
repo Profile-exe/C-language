@@ -1,18 +1,16 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void)
 {
-	char S[100] = { 0 };
-	int abc[26] = { 0 };
-
-	scanf("%s", S);
-	for (int i = 0; S[i] != '\0'; i++) {
-		if (abc[S[i] - 'a'] == 0)
-			abc[S[i] - 'a'] = i + 1;
-	}
-
-	for (int i = 0; i < 26; i++) {
-		printf("%d ", abc[i] - 1);
-	}
+	int idx = 0;
+	int* loc = (int*)malloc(26 * sizeof(int));
+	char str[100];
+	scanf("%s", str);
+	memset(loc, -1, 26 * sizeof(int));
+	for (int i = 0; i < strlen(str); i++)
+		if (loc[str[i] - 'a'] == -1) loc[str[i] - 'a'] = i;
+	for (int i = 0; i < 26; i++) printf("%d ", loc[i]);
 	return 0;
 }
